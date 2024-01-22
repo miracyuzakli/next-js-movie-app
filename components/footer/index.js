@@ -1,14 +1,18 @@
 import React from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 import styles from "./styles.module.css";
 
 function Footer() {
   return (
     <footer className={styles.footer}>
-      <Link href="" target="_blank">
-        Footer Place
-      </Link>
+
+      <div className={styles.hr_custom}>
+
+
+      </div>
+
+      MOVIESFLIX - FOOTER
     </footer>
   );
 }
