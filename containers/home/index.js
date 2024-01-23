@@ -1,7 +1,6 @@
 import React from 'react';
 
 
-import Movies from '@/mocks/movies.json';
 import Genres from '@/mocks/genres.json';
 
 import FetatureMovie from '@/components/feature-movie'
@@ -10,21 +9,21 @@ import MoviesSection from '@/components/movies-section';
 
 // console.log(Movies.results[0]);
 
-function HomeContainer({ selectedCategory}) {
+function HomeContainer({ topRatedMovies = [], populerMovies = [], categories = [], selectedCategory }) {
     return (
         <div>
-            <FetatureMovie movie={Movies.results[0]} />
-            <Categories categories={Genres.genres.slice(0, 5)}/>
-         
-        {
-            selectedCategory.movies.length > 0 && (
-                <MoviesSection title={Genres.genres.find( genre => genre.id.toString() === selectedCategory.id).name}  movies={selectedCategory.movies}/>
-            )
-        }
+            <FetatureMovie movie={topRatedMovies[0]} />
+            <Categories categories={categories.slice(0, 5)} />
 
+            {
+                selectedCategory.movies.length > 0 && (
+                    <MoviesSection title={Genres.genres.find(genre => genre.id.toString() === selectedCategory.id).name} movies={selectedCategory.movies} />
+                )
+            }
 
-            <MoviesSection title={'Populer Films'}  movies={Movies.results.slice(1,7)}/>
-            <MoviesSection title={'Latest Movies'}  movies={Movies.results.slice(8, 14)}/>
+            <MoviesSection title={'Populer Movies'} movies={topRatedMovies.slice(0, 6)} />
+
+            <MoviesSection title={'Top Rated'} movies={populerMovies.slice(0, 6)} />
         </div>
     );
 }
